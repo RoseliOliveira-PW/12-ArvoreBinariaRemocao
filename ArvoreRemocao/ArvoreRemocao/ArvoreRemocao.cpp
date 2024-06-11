@@ -262,21 +262,25 @@ void removerElementoArvore(NO* no, int valor) {
                 free(atual);
 	        cout << " Elemento folha deletado" << endl;
 	}
+        else{
+
 	// caso 2: um filho	
 	if (atual->dir == NULL || atual ->esq == NULL) {
-		N0* excluir;
+		N0* novo;
 		if (atual-> dir != NULL){
-			filho = atual -> dir;
+			novo = atual -> dir;
 		}
 		else {
-			filho = atual->esq;
+			novo = atual->esq;
 		}
 		if (pai != NULL){
 			if (pai->dir == atual){
-                        pai->dir = filho;
+                        pai->dir = novo;
+			}else{
+				pai->esq = novo;
 			}
 		}else{
-			raiz = filho;
+			raiz = novo;
 		}
 		free(atual);
 		cout << Elemento com 1 filho deletado" << endl;
