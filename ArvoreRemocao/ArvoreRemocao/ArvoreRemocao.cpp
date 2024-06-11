@@ -248,30 +248,42 @@ void removerElementoArvore(NO* no, int valor) {
 
 
 	// caso 1: sem filhos	
-	NO* excluir = atual;
-	if (atual->dir && atual->esq == NULL) {
-		free(excluir);
-		atual = NULL;
-		cout << " Elemento folha deletado" << endl;
+	if (atual->esq == NULL && atual->dir == NULL)
+		if (pai != NULL){
+			if (pai->esq == atual){
+				pai->esq=NULL;
+			}
+			else{
+				pai ->dir = NULL;
+		}
+		}else{
+			raiz = NULL;
+		}
+                free(atual);
+	        cout << " Elemento folha deletado" << endl;
 	}
 	// caso 2: um filho	
-	else if (atual->dir == NULL) {
-		atual = atual->esq;
-		excluir->esq = NULL;
-		free(excluir);
-		excluir = NULL;
-		cout << "Elemento com um filho deletado" << endl;
-
+	if (atual->dir == NULL || atual ->esq == NULL) {
+		N0* excluir;
+		if (atual-> dir != NULL){
+			filho = atual -> dir;
+		}
+		else {
+			filho = atual->esq;
+		}
+		if (pai != NULL){
+			if (pai->dir == atual){
+                        pai->dir = filho;
+			}
+		}else{
+			raiz = filho;
+		}
+		free(atual);
+		cout << Elemento com 1 filho deletado" << endl;
 	}
-	else if (atual->esq == NULL) {
-		atual = atual->dir;
-		excluir->dir = NULL;
-		free(excluir);
-		excluir = NULL;
-		cout << "Elemento com um filho deletado" << endl;
-		return;
+       else {
 
-	}
+	
 	// caso 3: dois filhos
 
 	// procura o elmento mais a esquerda da sub-arvore da direita
